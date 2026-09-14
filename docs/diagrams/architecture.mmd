@@ -1,0 +1,43 @@
+graph TB
+    subgraph Client Layer
+        UI[Next.js 15 Web Client]
+        Sidebar[Session Sidebar]
+        Chat[SSE Chat Stream]
+        ArtifactUI[Sandboxed Split-Screen Artifacts]
+    end
+
+    subgraph Application Layer - FastAPI
+        API[API Router Layer]
+        ChatSvc[Chat Orchestration Service]
+        IngestSvc[Transcript Ingestion Service]
+        SessionSvc[Session Service]
+        Retriever[pgvector Retriever + Reranker]
+        Agents[QA / Essay / Artifact Agents]
+    end
+
+    subgraph Persistence Layer
+        PG[(PostgreSQL + pgvector)]
+        SessionsTbl[(sessions)]
+        MessagesTbl[(messages)]
+        ChunksTbl[(chunks / vector 1536)]
+        ArtifactsTbl[(artifacts)]
+    end
+
+    subgraph LLM & Infrastructure Layer
+        Factory[LLM Provider Factory]
+        OpenAI[OpenAI Provider]
+        Ollama[Ollama Local Provider]
+    end
+
+    UI --> API
+    API --> ChatSvc
+    API --> IngestSvc
+    API --> SessionSvc
+    ChatSvc --> Retriever
+    ChatSvc --> Agents
+    Agents --> Factory
+    Factory --> OpenAI
+    Factory --> Ollama
+    Retriever --> PG
+    IngestSvc --> PG
+    SessionSvc --> PG

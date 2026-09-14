@@ -1,0 +1,9 @@
+graph TD
+    Req[Chat / Agent Request] --> Factory[ProviderFactory.get_provider]
+    Factory --> CheckPref{Requested Provider Available?}
+    CheckPref -->|Yes| RoutePref[Route to Selected Provider]
+    CheckPref -->|No| CheckFallback{Fallback Enabled?}
+    CheckFallback -->|Yes| TryAlt{Alternate Provider Available?}
+    TryAlt -->|Yes| RouteAlt[Route to Alternate Provider with Warning]
+    TryAlt -->|No| Error[Raise NoProviderAvailableError / HTTP 503]
+    CheckFallback -->|No| Error

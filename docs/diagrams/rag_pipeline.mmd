@@ -1,0 +1,15 @@
+graph TD
+    A[User Query] --> B[Chat Service]
+    B --> C{Detect Intent}
+    C -->|Q&A| D[RAG Retriever]
+    C -->|Essay| E[Ship30 Essay Agent]
+    C -->|Artifact| F[Artifact Agent]
+    
+    D --> G[Embed Query via OpenAI / Ollama]
+    G --> H[pgvector Cosine Search Top-K Chunks]
+    H --> I{Similarity >= Threshold?}
+    I -->|Yes| J[LLM Reranking Pass]
+    I -->|No| K[Insufficient Context Disclaimer]
+    J --> L[Construct Grounded Prompt with Citations]
+    L --> M[Stream Response via SSE]
+    M --> N[Persist Message & Metadata in PostgreSQL]
