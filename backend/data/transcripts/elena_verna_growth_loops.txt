@@ -1,0 +1,36 @@
+Episode: Elena Verna on B2B Product-Led Growth, Growth Loops, and Monetization Strategy
+Episode Number: 118
+Guest: Elena Verna
+Publish Date: 2024-04-15
+Tags: Growth Loops, B2B PLG, Product-Led Sales, Monetization, Retention
+
+Lenny: Welcome back to Lenny's Podcast. Today, I'm thrilled to welcome back Elena Verna, interim CMO and Head of Growth at companies like Dropbox, SurveyMonkey, Miro, Amplitude, and Lovable. Elena is one of the world's leading minds on B2B growth. Elena, welcome!
+
+Elena Verna: Thank you Lenny! Always a pleasure to nerd out with you on growth engines.
+
+Lenny: Let's start with a core concept you talk about: why funnels are dead, and why growth loops are the only sustainable way to build a compound growth engine.
+
+Elena Verna: Funnels represent linear thinking. You pour money or marketing into the top of the funnel (CAC), some percentage converts through activation and onboarding, and whatever drops out the bottom is lost. The fundamental problem with a funnel is that every new customer requires linear capital injection. When acquisition costs rise, your funnel breaks.
+
+A growth loop, on the other hand, is a closed system where the output of one cohort of users becomes the input for the next cohort. There are three primary types of loops in B2B:
+1. Viral / Collaboration loops: A user invites colleagues to collaborate on a document or board (like Miro or Figma).
+2. Content loops: User actions generate public-facing artifacts or SEO pages (like SurveyMonkey surveys, Canva templates, or Substack posts).
+3. Paid loops: Revenue generated from customer retention is directly reinvested into paid acquisition with positive payback periods under 12 months.
+
+If your product does not have an intrinsic loop built into the core user workflow, you don't have a product-led growth model; you just have a self-serve checkout funnel.
+
+Lenny: What is the most common mistake companies make when attempting to transition from sales-led to product-led growth (PLG)?
+
+Elena Verna: The number one mistake is treating PLG as a "go-to-market strategy" or a pricing tier rather than an entire company operating model. 
+
+Traditional sales-led companies think they can just add a "Free Trial" button on their website and call it PLG. But in PLG, the product is the primary driver of acquisition, activation, retention, and expansion. Sales does not disappear; instead, it evolves into Product-Led Sales (PLS). 
+
+In PLS, sales reps don't do cold outreach or pitch decks. They look at Product Qualified Leads (PQLs) — accounts where users are actively hitting usage thresholds, inviting teammates, or hitting monetization paywalls — and they reach out to offer enterprise security, consolidated billing, and team-wide governance.
+
+Lenny: How should founders think about choosing between Freemium versus a Free Trial?
+
+Elena Verna: It comes down to two variables: Time-to-Value (TTV) and Natural Habit Frequency.
+
+- Choose Freemium if your product requires time to set up and get value, or if you need network effects / viral distribution to make the product valuable (like Slack, Miro, or Notion). Freemium gives users unlimited time to form an organic habit.
+- Choose Free Trial (e.g. 14 days) if your product delivers immediate, high-value utility that solves an urgent pain point, but has high infrastructure costs per user or lacks viral expansion dynamics.
+- The hybrid model (Reverse Trial) is increasingly dominant: Give every new user full access to enterprise features for 14 days. When the trial ends, instead of locking them out, gracefully downgrade them to a generous free tier. This builds habit while exposing them to the power of premium capabilities.

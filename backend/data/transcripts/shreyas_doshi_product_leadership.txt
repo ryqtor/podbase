@@ -1,0 +1,32 @@
+Episode: Shreyas Doshi on High-Agency Product Leadership, the LNO Framework, and Escaping the Build Trap
+Episode Number: 95
+Guest: Shreyas Doshi
+Publish Date: 2023-11-20
+Tags: Product Management, LNO Framework, Prioritization, Career Growth, Execution
+
+Lenny: Welcome back to Lenny's Podcast. Today, I'm joined by Shreyas Doshi, former product leader at Stripe, Twitter, Google, and Yahoo, and one of the most respected voices in product management today. Shreyas, thank you for being here.
+
+Shreyas Doshi: It's wonderful to be here with you, Lenny.
+
+Lenny: Shreyas, your frameworks have transformed how thousands of PMs and founders operate. Let's start with one of your most famous frameworks: the LNO Framework for time management and prioritization. Can you break it down?
+
+Shreyas Doshi: Most people treat all tasks on their to-do list with uniform effort and perfectionism. That leads to burnout and mediocrity. The LNO Framework categorizes all work into three buckets:
+
+1. **L - Leverage Tasks (10x Return):** These are tasks where an extraordinary effort produces a disproportionate, exponential impact. Examples include product strategy, defining non-negotiable quality principles, high-stakes customer pitches, or designing core incentive systems. On Leverage tasks, you must strive for perfection and obsess over every detail.
+2. **N - Neutral Tasks (1x Return):** These are operational tasks that need to be done well and accurately, but extra effort delivers diminishing returns. Examples include routine sprint planning, sprint retrospectives, and standard stakeholder updates. Do them competently, aim for 80% excellence, and move on.
+3. **O - Overhead Tasks (<0.2x Return):** These are administrative duties, compliance checkboxes, or low-stakes bureaucratic requests. The goal with Overhead tasks is to minimize time: batch them, delegate them, automate them, or do them with "acceptable imperfection" in the shortest possible time.
+
+The tragedy in tech is that senior people spend 60% of their energy on Neutral and Overhead tasks, leaving no cognitive surplus for true Leverage work.
+
+Lenny: You also have a controversial view on the classic 2x2 "Impact vs Effort" prioritization matrix. Why do you believe it fails so many product teams?
+
+Shreyas Doshi: The 2x2 Impact vs Effort matrix looks scientific and rational, but in practice, it is fundamentally flawed for two reasons:
+First, human beings are terrible at predicting both Impact and Effort before building. PMs systematically overestimate impact and engineers systematically underestimate effort.
+Second, the matrix biases teams toward "Quick Wins" (High Impact, Low Effort) that are usually illusions. In reality, truly transformative features are almost always High Effort. When teams fill their roadmap with supposed quick wins, they end up with a fragmented product consisting of dozens of minor features that fail to move the company's core metrics.
+
+Instead, I recommend focusing on "Strategic Conviction" and "Expected Information Gain". Ask: What is the most critical question about our customer's behavior that, if answered, unlocks the next stage of company growth? Build the minimum prototype to answer that question.
+
+Lenny: What is the difference between a good PM and a truly exceptional, high-agency PM?
+
+Shreyas Doshi: A good PM executes within the constraints they are given. They take the roadmap, manage tickets, run meetings, and deliver features on time.
+A high-agency PM challenges the constraints themselves. When faced with an apparent roadblock, they find unconventional paths. They don't accept "that team doesn't have bandwidth" or "our infrastructure can't support that" as final answers. They understand customer psychology, business economics, and technical architecture so deeply that they can reframe problems and discover solutions that nobody else saw.

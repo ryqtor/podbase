@@ -108,10 +108,8 @@ class ChatService:
             try:
                 llm_provider = await ProviderFactory.get_provider(provider_name, model)
             except NoProviderAvailableError as e:
-                logger.info("falling_back_to_demo_provider", original_error=str(e))
-                from app.infrastructure.llm.demo_provider import DemoProvider
-                llm_provider = DemoProvider()
-
+                yield {"event": "error", "data": {"message": str(e)}}
+                return
 
             # Save user message
             await self.message_repo.create(

@@ -60,23 +60,20 @@ class Retriever:
         start_time = time.perf_counter()
 
         results = []
-        # Step 1 & 2: Vector similarity search (try embedder first)
-        try:
-            query_embedding = await self.embedder.embed_text(query)
-            results = await self.transcript_repo.similarity_search(
-                query_embedding=query_embedding,
-                top_k=top_k,
-            )
-        except Exception as e:
-            logger.warning("vector_search_failed", error=str(e))
+        # Step 1 & 2: Vector similarity search (if embedder is configured)
+        if settings.is_openai_configured:
+            try:
+                query_embedding = await self.embedder.embed_text(query)
+                results = await self.transcript_repo.similarity_search(
+                    query_embedding=query_embedding,
+                    top_k=top_k,
+                )
+            except Exception as e:
+                logger.warning("vector_search_failed", error=str(e))
 
         # Fallback to keyword text search if vector search returned nothing
         if not results:
-            try:
-                results = await self.transcript_repo.text_search(query=query, top_k=top_k)
-            except Exception as e:
-                logger.warning("text_search_failed", error=str(e))
-
+            results = await self.transcript_repo.text_search(query=query, top_k=top_k)
 
         if not results:
             retrieval_ms = int((time.perf_counter() - start_time) * 1000)

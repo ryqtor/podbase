@@ -99,7 +99,8 @@ class ProviderFactory:
             except Exception:
                 pass
 
-            logger.error("fallback_provider_also_unavailable", fallback=fallback_name)
+            logger.info("falling_back_to_demo_provider")
+            return DemoProvider()
 
         raise NoProviderAvailableError(
             f"No LLM provider is available. "

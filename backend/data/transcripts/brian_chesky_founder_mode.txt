@@ -1,0 +1,31 @@
+Episode: Brian Chesky on Founder Mode, Designing World-Class Products, and Rebuilding Airbnb
+Episode Number: 142
+Guest: Brian Chesky
+Publish Date: 2024-09-08
+Tags: Founder Mode, Product Leadership, Design, Company Culture, Airbnb
+
+Lenny: Welcome to Lenny's Podcast. Today, my guest is Brian Chesky, co-founder and CEO of Airbnb. Brian recently ignited a huge conversation across the tech world about "Founder Mode" vs "Manager Mode". Brian, thank you so much for joining me today.
+
+Brian Chesky: Thanks for having me, Lenny. It's great to be here.
+
+Lenny: Let's dive right into Founder Mode. What is it really, and why did you feel the conventional Silicon Valley advice about scaling companies was fundamentally broken?
+
+Brian Chesky: For years, founders were taught that as your company scales, you should hire professional managers and "get out of the way". The classic advice was: hire great people, give them autonomy, delegate everything, and focus only on culture and hiring. But when we did that at Airbnb around 2018 and 2019, the company slowed to a crawl. We had dozens of sub-organizations, hundreds of project managers writing specs for other project managers, and nobody was looking at the actual end-to-end customer journey.
+
+When COVID hit in 2020 and our business dropped 80% in eight weeks, we had an existential crisis. I realized: if we're going to survive, I have to know every single detail. I had to get into the weeds. We cut down to a single centralized roadmap. We eliminated the traditional product management role where PMs acted like mini-CEOs or ticket coordinators, and we merged product management with product marketing. We said: if you can't talk to customers and explain the product to the market, you shouldn't be defining the product.
+
+Lenny: That was a huge shift. How did that change your day-to-day product review process?
+
+Brian Chesky: We instituted what we call the 2-Year Integrated Roadmap and our bi-annual release cycles (Summer and Winter Releases). Instead of 50 different teams launching things randomly throughout the year, everything is synchronized. Every single feature that ships goes through a rigorous review process with me, Hiroki, and our design and engineering leads.
+
+People call this micromanagement. I disagree. Micromanagement is telling people how to do their job when you don't know what you're doing, or obsessing over trivia without context. Founder Mode is having the technical and product taste to inspect the details, connecting dots across disparate teams, and holding a standard of excellence that no individual department head has the incentive or perspective to maintain alone.
+
+Lenny: A lot of founders struggle with this transition. How do you balance being in the details without becoming a bottleneck for execution?
+
+Brian Chesky: The key is shared context and rhythm. We hold weekly reviews where teams bring working prototypes, not PowerPoint slides. No decks allowed. If it’s software, I want to click on it on a phone. If it’s customer support, I want to hear the call recordings.
+
+When everyone knows the standard and sees the founder consistently caring about the pixels, the typography, the latency, and the edge cases, the entire organization's quality bar elevates. People stop bringing half-baked work. You empower people not by abandoning them to make mistakes in isolation, but by teaching them how to see the product through the eyes of the customer.
+
+Lenny: What advice would you give to a Series A or Series B founder listening right now who feels their company is drifting into Manager Mode?
+
+Brian Chesky: First, look at your org chart and your calendar. If you spend most of your day in status updates and 1-on-1s managing politics rather than touching the product, you are in Manager Mode. Second, simplify your roadmap. If you have more than 5 top priorities, you have zero priorities. Third, eliminate bureaucracy between the people doing the work and the people making the decisions. At Airbnb, we took out layers of middle management. The designers and engineers now work directly with leadership. You will be amazed at how fast a company can move when the friction of consensus-seeking is removed.
