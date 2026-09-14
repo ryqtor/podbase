@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageSquare, Trash2 } from "lucide-react";
+import { MessageSquare, Trash2, Clock } from "lucide-react";
 import { Session } from "@/types";
 import { formatDate } from "@/lib/utils";
 
@@ -14,28 +14,37 @@ export function SessionItem({ session, isActive, onSelect, onDelete }: SessionIt
   return (
     <div
       onClick={() => onSelect(session.id)}
-      className={`group relative flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-all duration-200 border ${
+      className={`group relative flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-all duration-150 border ${
         isActive
-          ? "bg-surface-raised border-primary-500/40 text-foreground shadow-sm shadow-primary-500/10"
-          : "hover:bg-surface-raised/60 border-transparent text-muted-foreground hover:text-foreground"
+          ? "bg-white border-brand/40 text-slate-900 shadow-sm shadow-brand/5"
+          : "hover:bg-slate-100/70 border-transparent text-slate-600 hover:text-slate-900"
       }`}
     >
       <div className="flex items-center gap-2.5 min-w-0 flex-1">
-        <MessageSquare
-          className={`w-4 h-4 flex-shrink-0 transition-colors ${
-            isActive ? "text-primary-400" : "text-slate-500 group-hover:text-slate-400"
+        <div
+          className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
+            isActive
+              ? "bg-brand text-white shadow-sm shadow-brand/20"
+              : "bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-slate-700"
           }`}
-        />
+        >
+          <MessageSquare className="w-3.5 h-3.5" />
+        </div>
         <div className="flex flex-col min-w-0">
-          <span className="text-sm font-medium truncate">{session.title || "New Chat"}</span>
-          <span className="text-[11px] text-slate-500 truncate">{formatDate(session.updated_at)}</span>
+          <span className={`text-xs truncate font-medium ${isActive ? "font-semibold text-slate-900" : "text-slate-700"}`}>
+            {session.title || "New Discussion"}
+          </span>
+          <span className="text-[10px] text-slate-400 truncate flex items-center gap-1">
+            <Clock className="w-2.5 h-2.5 inline opacity-70" />
+            {formatDate(session.updated_at)}
+          </span>
         </div>
       </div>
 
       <button
         onClick={(e) => onDelete(session.id, e)}
-        title="Delete session"
-        className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-all ml-1 flex-shrink-0"
+        title="Delete conversation"
+        className="opacity-0 group-hover:opacity-100 p-1.5 rounded-md text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-all ml-1 flex-shrink-0"
       >
         <Trash2 className="w-3.5 h-3.5" />
       </button>

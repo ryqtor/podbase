@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Sparkles, FileText, ChevronRight } from "lucide-react";
+import { Sparkles, FileText, ChevronRight, PanelRight, Layers } from "lucide-react";
 import { ArtifactSummary, ModelInfo } from "@/types";
 import { MessageList } from "./message-list";
 import { ChatInput } from "./chat-input";
@@ -19,6 +19,7 @@ interface ChatPanelProps {
   onOpenArtifact: (artifactId: string) => void;
   artifacts: ArtifactSummary[];
   isArtifactPanelOpen: boolean;
+  onToggleArtifactPanel?: () => void;
 }
 
 export function ChatPanel({
@@ -34,6 +35,7 @@ export function ChatPanel({
   onOpenArtifact,
   artifacts,
   isArtifactPanelOpen,
+  onToggleArtifactPanel,
 }: ChatPanelProps) {
   const [availableModels, setAvailableModels] = useState<ModelInfo[]>([]);
 
@@ -43,24 +45,36 @@ export function ChatPanel({
 
   return (
     <div className="flex-1 flex flex-col h-full bg-background min-w-0 relative">
-      {/* Top Navbar */}
-      <header className="h-14 border-b border-border px-5 flex items-center justify-between gap-4 bg-surface/40 backdrop-blur-sm flex-shrink-0 z-10">
+      {/* Top Editorial Navbar */}
+      <header className="h-14 border-b border-border px-6 flex items-center justify-between gap-4 bg-white/70 backdrop-blur-md flex-shrink-0 z-10 shadow-subtle">
         <div className="flex items-center gap-3 min-w-0">
-          <h2 className="text-sm font-semibold text-foreground truncate">{sessionTitle || "New Chat"}</h2>
+          <h2 className="font-serif font-bold text-slate-900 text-base truncate">
+            {sessionTitle || "New Conversation"}
+          </h2>
         </div>
 
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-2.5 flex-shrink-0">
           <ModelBadge provider={selectedProvider} model={selectedModel} />
 
           {/* Artifacts Quick Switcher Pill */}
-          {artifacts.length > 0 && !isArtifactPanelOpen && (
+          {artifacts.length > 0 && (
             <button
-              onClick={() => onOpenArtifact(artifacts[artifacts.length - 1].id)}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-primary-500/10 hover:bg-primary-500/20 border border-primary-500/30 text-primary-300 text-xs font-medium transition-all"
+              onClick={() => {
+                if (onToggleArtifactPanel) {
+                  onToggleArtifactPanel();
+                } else {
+                  onOpenArtifact(artifacts[artifacts.length - 1].id);
+                }
+              }}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all border ${
+                isArtifactPanelOpen
+                  ? "bg-brand text-white border-brand shadow-sm shadow-brand/20"
+                  : "bg-orange-50 hover:bg-orange-100 text-brand border-orange-200/70"
+              }`}
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Artifacts ({artifacts.length})</span>
-              <ChevronRight className="w-3 h-3 text-primary-400" />
+              <PanelRight className="w-3.5 h-3.5 ml-0.5 opacity-75" />
             </button>
           )}
         </div>
@@ -76,7 +90,7 @@ export function ChatPanel({
         onSelectPrompt={onSendMessage}
       />
 
-      {/* Sticky Bottom Input */}
+      {/* Floating Bottom Input Bar */}
       <ChatInput
         onSend={onSendMessage}
         disabled={isStreaming}

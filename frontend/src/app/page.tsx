@@ -83,7 +83,7 @@ export default function Home() {
 
       {/* Center Chat Panel */}
       <ChatPanel
-        sessionTitle={activeSession?.title || "New Chat"}
+        sessionTitle={activeSession?.title || "New Discussion"}
         messages={messages}
         isStreaming={isStreaming}
         streamingContent={streamingContent}
@@ -95,13 +95,21 @@ export default function Home() {
         onOpenArtifact={openArtifact}
         artifacts={artifacts}
         isArtifactPanelOpen={isArtifactPanelOpen}
+        onToggleArtifactPanel={() => {
+          if (isArtifactPanelOpen) {
+            closeArtifactPanel();
+          } else if (artifacts.length > 0) {
+            openArtifact(artifacts[artifacts.length - 1].id);
+          }
+        }}
       />
 
-      {/* Right Artifact Split-Screen Panel */}
+      {/* Right Artifact & Source Dedicated Panel */}
       {isArtifactPanelOpen && (
         <ArtifactPanel
           artifact={activeArtifact}
           onClose={closeArtifactPanel}
+          sources={currentSources}
         />
       )}
     </main>
