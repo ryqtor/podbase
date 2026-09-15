@@ -1,0 +1,6 @@
+[2026-09-14 10:15:02] INFO [agent_runner]: Starting RAG & pgvector storage initialization...
+[2026-09-14 10:15:03] INFO [db_migration]: Executing SQL: CREATE EXTENSION IF NOT EXISTS vector;
+[2026-09-14 10:15:04] INFO [db_migration]: Creating HNSW index idx_chunks_embedding using vector_cosine_ops...
+[2026-09-14 10:15:05] WARNING [db_migration]: Index construction warning: HNSWef_construction parameter set to 64. Memory allocation verified.
+[2026-09-14 10:15:06] INFO [ingestion_service]: Seeding initial transcripts: Brian Chesky, Elena Verna, Shreyas Doshi.
+[2026-09-14 10:15:10] SUCCESS [ingestion_service]: 142 chunks processed and 1536-dim embeddings stored cleanly.

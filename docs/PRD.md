@@ -8,6 +8,46 @@ By combining semantic vector search over dialogue chunks, LLM-based reranking, m
 
 ---
 
+## 1.1 Forward Deployment Discovery Brief
+
+### User and Problem Definition
+- **Primary User**: Product Managers, Growth Leaders, and Founders who need proven frameworks and battle-tested advice from leading tech executives interviewed on Lenny's Podcast.
+- **Job to Be Done**: Extract grounded insights, draft high-impact essays/memos, and build operational growth artifacts without listening through 200+ hours of audio or manually summarizing raw text.
+- **Core Friction Removed**: Eliminates hallucinated LLM advice, saves hours of drafting time, and bridges the gap between raw conversational insights and rendered, actionable deliverables.
+
+### Key Success Metrics
+1. **Groundedness Ratio**: >95% of assistant claims cite exact transcript timestamps or episode excerpts.
+2. **Hallucination Rate**: <2% on out-of-domain queries (triggering the "insufficient evidence" disclaimer).
+3. **Deployment Velocity**: <2 minutes to deploy and run the system via `docker compose up`.
+4. **Time-to-Artifact**: Under 5 seconds to generate and render interactive strategy artifacts.
+
+### Key Assumptions
+- **Assumed Data Format**: Transcripts are provided as plain text files with consistent speaker labels and episode headers.
+- **Assumed Runtime Environment**: Evaluators will run the system either using cloud keys (OpenAI) or locally via Ollama with standard Docker hardware (8GB+ RAM).
+- **Assumed Usage Model**: Sessions are scoped to individual product management/growth inquiries with multi-turn follow-ups.
+
+### Scope Choices (Inclusions vs. Exclusions)
+- **Included**:
+  - Grounded RAG Q&A with episode citation metadata and similarity scores.
+  - Dedicated "Ship 30 for 30" atomic essay generation engine (~1,250 words, hook, core framework, 1-2-3 takeaways).
+  - Split-screen artifact workspace supporting interactive HTML/CSS and Markdown preview with DOMPurify sanitization.
+  - Dual provider support (OpenAI + local Ollama `llama3.1:8b`) with zero-downtime model switching.
+  - Full persistence in PostgreSQL + pgvector with session history tracking.
+- **Excluded**:
+  - Audio transcription pipeline (Whisper STT): Transcripts are ingested directly as raw text.
+  - User authentication / multi-tenant RBAC: Designed as an internal team tool for simplified local evaluation.
+
+### Risk Analysis & Mitigations
+| Risk | Severity | Mitigation Strategy |
+|---|---|---|
+| **Hallucination** | High | Strict RAG prompt constraints + confidence threshold disclaimers for out-of-domain prompts. |
+| **Unsafe Artifact Rendering** | High | Client-side DOMPurify tag/attribute whitelisting + iframe sandboxing (`allow-scripts allow-same-origin`). |
+| **Latency & Cost** | Medium | pgvector HNSW indexing (<5ms search) + hybrid local model (Ollama) option for zero API costs. |
+| **Local Model Quality** | Medium | Tailored system prompts for smaller local models (`llama3.1:8b`) to enforce output structure. |
+| **Data Leakage** | Low | Local PostgreSQL database instance; zero telemetry or data sharing to third-party services. |
+
+---
+
 ## 2. Target Personas & Problem Statements
 
 | Persona | Needs & Goals | Core Friction Addressed |

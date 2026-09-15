@@ -1,0 +1,7 @@
+[2026-09-15 17:45:47] ERROR [npm_install]: npm error code ERESOLVE
+[2026-09-15 17:45:47] ERROR [npm_install]: While resolving: @clerk/nextjs@7.9.2
+[2026-09-15 17:45:47] ERROR [npm_install]: Found: next@14.2.10
+[2026-09-15 17:45:47] ERROR [npm_install]: Could not resolve dependency: peer next@"^15.2.8 || ^15.3.8" from @clerk/nextjs@7.9.2
+[2026-09-15 17:46:00] INFO [agent_diagnosis]: Analyzing semver constraints between Next.js 14 and @clerk/nextjs.
+[2026-09-15 17:46:05] ACTION [agent_resolution]: Created root .npmrc with legacy-peer-deps=true and verified frontend/package.json pins @clerk/nextjs to ^6.12.0.
+[2026-09-15 17:49:36] SUCCESS [npm_install]: Executed npm install --legacy-peer-deps: added 233 packages cleanly.
