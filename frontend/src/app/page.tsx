@@ -4,11 +4,16 @@ import React, { useState } from "react";
 import { useSessions } from "@/hooks/use-sessions";
 import { useChat } from "@/hooks/use-chat";
 import { useArtifacts } from "@/hooks/use-artifacts";
+import { useAuthSync } from "@/lib/auth-api-client";
 import { SessionSidebar } from "@/components/sidebar/session-sidebar";
 import { ChatPanel } from "@/components/chat/chat-panel";
 import { ArtifactPanel } from "@/components/artifacts/artifact-panel";
+import { ContextPanel } from "@/components/context/context-panel";
 
 export default function Home() {
+  // Sync Clerk auth token to API client
+  useAuthSync();
+
   const {
     sessions,
     activeSessionId,
@@ -61,7 +66,13 @@ export default function Home() {
     }
   };
 
+  const handleContextAction = (action: string) => {
+    // Convert quick actions into chat prompts
+    sendMessage(action);
+  };
+
   const activeSession = sessions.find((s) => s.id === activeSessionId);
+  const hasMessages = messages.length > 0 || isStreaming;
 
   return (
     <main className="flex h-screen w-screen overflow-hidden bg-background">
@@ -104,13 +115,15 @@ export default function Home() {
         }}
       />
 
-      {/* Right Artifact & Source Dedicated Panel */}
-      {isArtifactPanelOpen && (
+      {/* Right Panel: Context (default) or Artifact (when opened) */}
+      {isArtifactPanelOpen ? (
         <ArtifactPanel
           artifact={activeArtifact}
           onClose={closeArtifactPanel}
           sources={currentSources}
         />
+      ) : (
+        <ContextPanel onAction={handleContextAction} />
       )}
     </main>
   );

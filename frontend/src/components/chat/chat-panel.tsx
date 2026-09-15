@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Sparkles, FileText, ChevronRight, PanelRight, Layers } from "lucide-react";
+import { FileText, PanelRight } from "lucide-react";
 import { ArtifactSummary, ModelInfo } from "@/types";
 import { MessageList } from "./message-list";
 import { ChatInput } from "./chat-input";
-import { ModelBadge } from "./model-badge";
 import { ApiClient } from "@/lib/api-client";
 
 interface ChatPanelProps {
@@ -43,44 +42,43 @@ export function ChatPanel({
     ApiClient.listModels().then(setAvailableModels).catch(console.error);
   }, []);
 
+  const hasMessages = messages.length > 0 || isStreaming;
+
   return (
     <div className="flex-1 flex flex-col h-full bg-background min-w-0 relative">
-      {/* Top Editorial Navbar */}
-      <header className="h-14 border-b border-border px-6 flex items-center justify-between gap-4 bg-white/70 backdrop-blur-md flex-shrink-0 z-10 shadow-subtle">
-        <div className="flex items-center gap-3 min-w-0">
-          <h2 className="font-serif font-bold text-slate-900 text-base truncate">
+      {/* ── Thin Top Bar (only when in conversation) ── */}
+      {hasMessages && (
+        <header className="h-12 border-b border-border px-6 flex items-center justify-between gap-4 bg-white/60 flex-shrink-0 z-10">
+          <h2 className="font-serif text-[15px] text-foreground truncate">
             {sessionTitle || "New Conversation"}
           </h2>
-        </div>
 
-        <div className="flex items-center gap-2.5 flex-shrink-0">
-          <ModelBadge provider={selectedProvider} model={selectedModel} />
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {artifacts.length > 0 && (
+              <button
+                onClick={() => {
+                  if (onToggleArtifactPanel) {
+                    onToggleArtifactPanel();
+                  } else {
+                    onOpenArtifact(artifacts[artifacts.length - 1].id);
+                  }
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium transition-all border ${
+                  isArtifactPanelOpen
+                    ? "bg-foreground text-white border-foreground"
+                    : "bg-white hover:bg-slate-50 text-muted-foreground border-border"
+                }`}
+              >
+                <FileText className="w-3 h-3" />
+                <span>Artifacts ({artifacts.length})</span>
+                <PanelRight className="w-3 h-3 ml-0.5 opacity-60" />
+              </button>
+            )}
+          </div>
+        </header>
+      )}
 
-          {/* Artifacts Quick Switcher Pill */}
-          {artifacts.length > 0 && (
-            <button
-              onClick={() => {
-                if (onToggleArtifactPanel) {
-                  onToggleArtifactPanel();
-                } else {
-                  onOpenArtifact(artifacts[artifacts.length - 1].id);
-                }
-              }}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all border ${
-                isArtifactPanelOpen
-                  ? "bg-brand text-white border-brand shadow-sm shadow-brand/20"
-                  : "bg-orange-50 hover:bg-orange-100 text-brand border-orange-200/70"
-              }`}
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Artifacts ({artifacts.length})</span>
-              <PanelRight className="w-3.5 h-3.5 ml-0.5 opacity-75" />
-            </button>
-          )}
-        </div>
-      </header>
-
-      {/* Main Conversation Stream */}
+      {/* ── Main Conversation Stream ── */}
       <MessageList
         messages={messages}
         isStreaming={isStreaming}
@@ -90,7 +88,7 @@ export function ChatPanel({
         onSelectPrompt={onSendMessage}
       />
 
-      {/* Floating Bottom Input Bar */}
+      {/* ── Floating Bottom Composer ── */}
       <ChatInput
         onSend={onSendMessage}
         disabled={isStreaming}

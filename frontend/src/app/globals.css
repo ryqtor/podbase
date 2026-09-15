@@ -4,24 +4,28 @@
 
 @layer base {
   :root {
-    --background: 38 25% 97%; /* #FAF8F5 */
-    --foreground: 222.2 47.4% 11.2%; /* #0F172A */
+    --background: #FAF8F5;
+    --foreground: #111827;
+    --sidebar: #0F1117;
+    --accent: #FF9A61;
+    --secondary-text: #6B7280;
+    --border-color: #ECECEC;
   }
 
   body {
-    background-color: #FAF8F5;
-    color: #0F172A;
+    background-color: var(--background);
+    color: var(--foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, .font-heading {
-    font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+    font-family: "DM Serif Display", Georgia, serif;
   }
 }
 
-/* Custom Editorial Scrollbar */
+/* ── Custom Scrollbar (Light Surfaces) ── */
 .scrollbar-thin::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -40,9 +44,28 @@
   background: #9CA3AF;
 }
 
-/* Document Reading Styles */
+/* ── Dark Sidebar Scrollbar ── */
+.scrollbar-dark::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Document Reading Styles ── */
 .prose-editorial {
-  font-family: var(--font-sans), Inter, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #1E293B;
   line-height: 1.75;
 }
@@ -50,10 +73,10 @@
 .prose-editorial h1,
 .prose-editorial h2,
 .prose-editorial h3 {
-  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
-  color: #0F172A;
+  font-family: "DM Serif Display", Georgia, serif;
+  color: #111827;
   letter-spacing: -0.015em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .prose-editorial h1 {
@@ -70,7 +93,7 @@
   line-height: 1.35;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
-  color: #0F172A;
+  color: #111827;
 }
 
 .prose-editorial h3 {
@@ -86,7 +109,7 @@
 }
 
 .prose-editorial blockquote {
-  border-left: 3px solid #FF7A45;
+  border-left: 3px solid #FF9A61;
   padding-left: 1rem;
   margin: 1.25rem 0;
   font-style: italic;

@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       colors: {
         background: "#FAF8F5",
+        sidebar: "#0F1117",
         surface: {
           DEFAULT: "#FFFFFF",
           subtle: "#F7F5F0",
@@ -18,16 +19,37 @@ const config: Config = {
           card: "#FFFFFF",
         },
         brand: {
-          DEFAULT: "#FF7A45",
-          hover: "#F0642D",
+          DEFAULT: "#FF9A61",
+          hover: "#F08A50",
           light: "#FFF3EE",
-          dark: "#D95725",
+          dark: "#D97B3F",
         },
         secondary: {
           DEFAULT: "#0EA5E9",
           light: "#F0F9FF",
           dark: "#0284C7",
         },
+        // Pastel card colors
+        lavender: "#F3EEFF",
+        mint: "#EEF9F0",
+        pink: "#FFF1F5",
+        beige: "#FFF8EA",
+        // Text colors
+        foreground: "#111827",
+        "muted-foreground": "#6B7280",
+        "secondary-text": "#6B7280",
+        // Border colors
+        border: {
+          DEFAULT: "#ECECEC",
+          subtle: "#F1EFEA",
+          strong: "#D1D5DB",
+        },
+        // Sidebar-specific colors
+        "sidebar-hover": "rgba(255, 255, 255, 0.06)",
+        "sidebar-active": "rgba(255, 255, 255, 0.1)",
+        "sidebar-text": "rgba(255, 255, 255, 0.5)",
+        "sidebar-text-bright": "rgba(255, 255, 255, 0.9)",
+        // Slate scale
         slate: {
           950: "#020617",
           900: "#0F172A",
@@ -41,29 +63,23 @@ const config: Config = {
           100: "#F1F5F9",
           50: "#F8FAFC",
         },
-        border: {
-          DEFAULT: "#E5E7EB",
-          subtle: "#F1EFEA",
-          strong: "#D1D5DB",
-        },
-        foreground: "#0F172A",
-        "muted-foreground": "#64748B",
+        navy: "#1A1F36",
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Playfair Display", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        serif: ["'DM Serif Display'", "Georgia", "serif"],
+        sans: ["'Inter'", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        mono: ["'JetBrains Mono'", "Fira Code", "monospace"],
       },
       boxShadow: {
         subtle: "0 1px 2px rgba(0, 0, 0, 0.04)",
-        card: "0 2px 8px -2px rgba(15, 23, 42, 0.05), 0 1px 4px -1px rgba(15, 23, 42, 0.03)",
-        "card-hover": "0 12px 28px -4px rgba(15, 23, 42, 0.08), 0 3px 10px -2px rgba(15, 23, 42, 0.04)",
-        float: "0 20px 40px -6px rgba(15, 23, 42, 0.09), 0 6px 16px -2px rgba(15, 23, 42, 0.04)",
+        card: "0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
+        "card-hover": "0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.03)",
+        float: "0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03)",
       },
       borderRadius: {
         xl: "0.875rem",
-        "2xl": "1.125rem", // ~18px
-        "3xl": "1.375rem", // ~22px
+        "2xl": "1.25rem",     // 20px
+        "3xl": "1.5rem",      // 24px
       },
       animation: {
         "fade-in": "fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards",
