@@ -58,12 +58,7 @@ def create_app() -> FastAPI:
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[
-            "http://localhost:3000",
-            "http://frontend:3000",
-            f"http://localhost:{settings.frontend_port}",
-            "https://frontend-opal-nu-q78iu79xa9.vercel.app",
-        ],
+        allow_origin_regex="https://frontend-.*\.vercel\.app|http://localhost:.*|http://frontend:.*",
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
