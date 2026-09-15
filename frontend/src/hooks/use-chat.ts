@@ -40,11 +40,32 @@ export function useChat(
   }, [loadSessionMessages]);
 
   const sendMessage = async (userText: string) => {
-    if (!sessionId || !userText.trim() || isStreaming) return;
+    if (!userText.trim() || isStreaming) return;
+
+    let currentSessionId = sessionId;
+    if (!currentSessionId) {
+      try {
+        const newSession = await ApiClient.createSession();
+        currentSessionId = newSession.id;
+        if (onSessionTitleUpdate) {
+          onSessionTitleUpdate(newSession.title);
+        }
+      } catch (err: any) {
+        const errorMsg: Message = {
+          id: `err-${Date.now()}`,
+          session_id: "error",
+          role: "assistant",
+          content: `⚠️ Connection Error: Could not reach backend server at ${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}. Please make sure your backend API is running and NEXT_PUBLIC_API_URL is configured in Vercel settings.`,
+          created_at: new Date().toISOString(),
+        };
+        setMessages((prev) => [...prev, errorMsg]);
+        return;
+      }
+    }
 
     const userMessage: Message = {
       id: `temp-${Date.now()}`,
-      session_id: sessionId,
+      session_id: currentSessionId,
       role: "user",
       content: userText,
       created_at: new Date().toISOString(),
@@ -60,7 +81,7 @@ export function useChat(
     let latestSources: SourceReference[] = [];
     let timingMeta: { retrieval_ms?: number; generation_ms?: number } = {};
 
-    await ApiClient.streamChat(sessionId, userText, selectedProvider, selectedModel, {
+    await ApiClient.streamChat(currentSessionId, userText, selectedProvider, selectedModel, {
       onToken: (token: string) => {
         streamingMessageRef.current += token;
         setStreamingContent(streamingMessageRef.current);
@@ -84,7 +105,7 @@ export function useChat(
       onError: (errMsg: string) => {
         const errorMsg: Message = {
           id: `err-${Date.now()}`,
-          session_id: sessionId,
+          session_id: currentSessionId,
           role: "assistant",
           content: `⚠️ Error: ${errMsg}`,
           created_at: new Date().toISOString(),
@@ -98,7 +119,7 @@ export function useChat(
         if (finalContent) {
           const assistantMsg: Message = {
             id: `assistant-${Date.now()}`,
-            session_id: sessionId,
+            session_id: currentSessionId,
             role: "assistant",
             content: finalContent,
             sources: latestSources,

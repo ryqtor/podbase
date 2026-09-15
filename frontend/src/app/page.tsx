@@ -19,6 +19,7 @@ export default function Home() {
     activeSessionId,
     setActiveSessionId,
     isLoading: isSessionsLoading,
+    error: sessionsError,
     createNewSession,
     deleteSession,
     refreshSessions,
@@ -75,7 +76,13 @@ export default function Home() {
   const hasMessages = messages.length > 0 || isStreaming;
 
   return (
-    <main className="flex h-screen w-screen overflow-hidden bg-background">
+    <main className="relative flex h-screen w-screen overflow-hidden bg-background">
+      {sessionsError && (
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-50 bg-amber-950/90 border border-amber-500/30 text-amber-200 px-4 py-2 rounded-lg text-xs flex items-center gap-2 shadow-xl backdrop-blur-md">
+          <span>⚠️ <strong>Backend Disconnected:</strong> Could not connect to API ({process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}). Set <code>NEXT_PUBLIC_API_URL</code> in Vercel settings or start backend server.</span>
+        </div>
+      )}
+
       {/* Left Sidebar */}
       <SessionSidebar
         sessions={sessions}

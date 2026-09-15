@@ -13,12 +13,23 @@ export function useSessions() {
       setIsLoading(true);
       const data = await ApiClient.listSessions();
       setSessions(data);
-      if (data.length > 0 && !activeSessionId) {
-        setActiveSessionId(data[0].id);
+      if (data.length > 0) {
+        if (!activeSessionId) {
+          setActiveSessionId(data[0].id);
+        }
+      } else {
+        // Automatically create initial session if none exists
+        try {
+          const newS = await ApiClient.createSession("New Discussion");
+          setSessions([newS]);
+          setActiveSessionId(newS.id);
+        } catch {
+          // Ignore if auto-create fails
+        }
       }
       setError(null);
     } catch (err: any) {
-      setError(err.message || "Failed to load sessions");
+      setError(err.message || "Failed to connect to backend API");
     } finally {
       setIsLoading(false);
     }
