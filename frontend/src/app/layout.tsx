@@ -1,24 +1,10 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
-  title: "Lenny Growth Assistant — Podcast Intelligence Engine",
-  description: "Turn conversations into compounding growth. Grounded Q&A, Ship 30 for 30 essays, and interactive strategy artifacts backed by Lenny's Podcast.",
+  title: "Lenny Growth — AI Podcast Intelligence & Growth Strategy",
+  description: "Your podcast co-pilot. Ask questions, get insights, create content, and turn podcast wisdom into action.",
 };
 
 export default function RootLayout({
@@ -27,10 +13,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} h-full antialiased`}>
-      <body className="h-full bg-background text-foreground font-sans overflow-hidden select-none">
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="h-full antialiased">
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+          />
+        </head>
+        <body className="h-full bg-background text-foreground font-sans overflow-hidden select-none">
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
